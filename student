@@ -1,16 +1,32 @@
 CREATE TABLE student (
-    student_id INT PRIMARY KEY,
-    name VARCHAR(20),
-    major VARCHAR(20)
+    student_id INT AUTO_INCREMENT,
+    first_name VARCHAR(20) NOT NULL,
+    major VARCHAR(20) UNIQUE,
+    PRIMARY KEY(student_id)
 );
-
 DROP TABLE student;
 
 DESCRIBE student;
 
 ALTER TABLE student ADD gpa DECIMAL(3,2);
 
-INSERT INTO student VALUES(3, 'Jim', 'Pranks', 5.5);
-INSERT INTO student(student_id, name, major) VALUES(4, 'Pam', 'Art');
+INSERT INTO student(first_name, major, gpa) VALUES('Rayan', 'Fraud', 5.1268);
+INSERT INTO student(first_name, major, gpa) VALUES('Michael', 'Paper', 3.51268);
+INSERT INTO student(first_name, major, gpa) VALUES('Jim', 'Pranks', 2.183);
+INSERT INTO student(first_name, major, gpa) VALUES('Dwight', 'Beetroot', 4.56);
+INSERT INTO student(first_name, major) VALUES('Pam', 'Art');
+
+UPDATE student
+SET major = 'Dunder Mifflin'
+WHERE major = 'Paper';
+
+UPDATE student
+SET major = 'Dunder Mifflin'
+WHERE major = 'Paper' OR major = 'Pranks';
+
+DELETE FROM student
+WHERE first_name = 'Rayan' AND gpa < 7;
+
+DELETE FROM student;
 
 SELECT * FROM student;
